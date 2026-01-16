@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Zephyr Records – Vinyl Plattenladen aus Hamburg</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --bg: #0d0d0d;
+            --bg-alt: #1a1a1a;
+            --text: #f0f0f0;
+            --text-muted: #b5b5b5;
+            --accent: #d8b46a;
+            --focus: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        a:focus,
+        button:focus {
+            outline: 3px solid var(--focus);
+            outline-offset: 3px;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: 10px;
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            left: 10px;
+        }
+
+        header {
+            background-color: var(--bg-alt);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header img {
+            max-width: 220px;
+            height: auto;
+        }
+
+        header h1 {
+            margin-top: 20px;
+            font-size: 2.4rem;
+            letter-spacing: 2px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            padding: 50px 0;
+        }
+
+        h2 {
+            border-bottom: 2px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        ul.genres {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        ul.genres li {
+            background-color: #222;
+            padding: 10px 15px;
+            border: 1px solid #444;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery figure {
+            background: #222;
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+        }
+
+        .map {
+            background-color: #222;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        footer {
+            background-color: var(--bg-alt);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+<a href="#inhalt" class="skip-link">Zum Inhalt springen</a>
+
+<header>
+    <img src="logo_dummy.png"
+         alt="Zephyr Records Logo – Schriftzug Zephyr Records"
+    >
+    <h1>Zephyr Records</h1>
+    <p>Vinyl-Plattenladen aus Hamburg</p>
+</header>
+
+<main id="inhalt">
+
+    <section aria-labelledby="ueber-uns">
+        <h2 id="ueber-uns">Über Uns</h2>
+        <p>
+            Zephyr Records ist ein unabhängiger Plattenladen in Hamburg.
+            Wir sind spezialisiert auf schwere und psychedelische Musik
+            und führen ausschließlich Schallplatten auf Vinyl – neu und gebraucht.
+        </p>
+    </section>
+
+    <section aria-labelledby="sortiment">
+        <h2 id="sortiment">Sortiment</h2>
+        <ul class="genres">
+            <li>Stoner Rock</li>
+            <li>Sludge</li>
+            <li>Psychedelic Rock</li>
+            <li>Doom</li>
+        </ul>
+    </section>
+
+    <section aria-labelledby="galerie">
+        <h2 id="galerie">Galerie</h2>
+        <div class="gallery">
+            <figure>
+                <img src="gallery_dummy_1.jpg" alt="Plattenregale im Laden – Dummybild">
+                <figcaption>Galerie Dummy</figcaption>
+            </figure>
+            <figure>
+                <img src="gallery_dummy_2.jpg" alt="Vinyl-Auswahl im Laden – Dummybild">
+                <figcaption>Galerie Dummy</figcaption>
+            </figure>
+            <figure>
+                <img src="gallery_dummy_3.jpg" alt="Plattenspieler im Laden – Dummybild">
+                <figcaption>Galerie Dummy</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section aria-labelledby="ankauf">
+        <h2 id="ankauf">Plattenankauf</h2>
+        <p>
+            Wir kaufen Schallplatten aus den Bereichen Stoner, Doom,
+            Psychedelic Rock, Sludge und verwandten Genres.
+        </p>
+        <p>
+            Sammlungen, Nachlässe oder Einzelstücke –
+            kontaktieren Sie uns gerne per E-Mail.
+        </p>
+    </section>
+
+    <section aria-labelledby="lage">
+        <h2 id="lage">Lage</h2>
+        <div class="map" role="img" aria-label="Platzhalter für Lageplan von Zephyr Records in Hamburg">
+            Lageplan Dummy (z. B. Google Maps)
+        </div>
+    </section>
+
+    <section aria-labelledby="kontakt">
+        <h2 id="kontakt">Kontakt</h2>
+        <address>
+            <p>
+                E-Mail:
+                <a href="mailto:kontakt@zephyr-records.de">
+                    kontakt@zephyr-records.de
+                </a>
+            </p>
+            <p>
+                Instagram:
+                <a href="#" aria-label="Zephyr Records auf Instagram">
+                    instagram.com/zephyrrecords
+                </a>
+            </p>
+            <p>
+                Discogs:
+                <a href="#" aria-label="Zephyr Records Verkäuferprofil auf Discogs">
+                    discogs.com/seller/zephyrrecords
+                </a>
+            </p>
+        </address>
+    </section>
+
+</main>
+
+<footer>
+    © 2026 Zephyr Records · Hamburg · Vinyl Only
+</footer>
+
+</body>
+</html>
