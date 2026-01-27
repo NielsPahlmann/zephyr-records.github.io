@@ -5,13 +5,20 @@
 <title>Zephyr Records – Vinyl aus Hamburg</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
-    --bg: #0d0d0d;
-    --bg-alt: #161616;
-    --text: #f2f2f2;
-    --muted: #b3b3b3;
-    --accent: #d8b46a;
+    --bg: #ffffff;
+    --bg-alt: #f5f5f5;
+    --bg-card: #fafafa;
+    --text: #1a1a1a;
+    --muted: #555;
+    --accent: #cc0000;
+    --accent-orange: #ff6b35;
+    --gold: #d4a923;
 }
 
 * {
@@ -20,7 +27,7 @@
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
@@ -32,8 +39,8 @@ a {
 
 a:focus,
 button:focus {
-    outline: 3px solid #fff;
-    outline-offset: 3px;
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 /* Skip Link */
@@ -41,7 +48,7 @@ button:focus {
     position: absolute;
     left: -999px;
     top: 10px;
-    background: #000;
+    background: var(--accent);
     color: #fff;
     padding: 10px;
     z-index: 9999;
@@ -55,17 +62,19 @@ button:focus {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: var(--bg-alt);
-    border-bottom: 1px solid #333;
+    background: var(--bg);
+    border-bottom: 3px solid var(--accent);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .header {
     max-width: 1000px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 60px 1fr 60px;
+    grid-template-columns: 80px 1fr 80px;
     align-items: center;
-    height: 64px;
+    height: 100px;
+    padding: 0 20px;
 }
 
 .header h1 {
@@ -75,63 +84,284 @@ button:focus {
     letter-spacing: 2px;
 }
 
+.header-logo {
+    height: 85px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
 .header button {
     background: none;
     border: none;
     color: var(--text);
-    font-size: 2rem;
+    font-size: 2.5rem;
     cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.header button:hover {
+    color: var(--accent);
+    transform: scale(1.1);
 }
 
 /* Hero / Mood Image */
 .hero {
-    height: 70vh;
-    background: url("mood_dummy.jpg") center / cover no-repeat;
+    height: 60vh;
+    background: url("images/moods/img_2.png") center / cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
 }
 
 .hero::after {
     content: "";
     position: absolute;
-    inset: 64px 0 0 0;
-    background: rgba(0,0,0,0.45);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
 }
 
 .hero-text {
     position: relative;
     text-align: center;
     padding: 20px;
+    z-index: 1;
 }
 
 .hero-text h2 {
-    font-size: 2.6rem;
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 5rem;
     margin-bottom: 10px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 3px 3px 0 var(--accent), 5px 5px 15px rgba(0,0,0,0.5);
 }
 
 .hero-text p {
-    color: var(--muted);
+    color: #ddd;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
 }
 
 /* Main Content */
+.main-wrapper {
+    background: var(--bg);
+}
+
 main {
     max-width: 1000px;
     margin: auto;
-    padding: 20px;
+    padding: 60px 20px;
+    color: var(--text);
+}
+
+main a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+main a:hover {
+    border-bottom-color: var(--accent);
 }
 
 section {
-    padding: 60px 0;
+    padding: 50px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+section:last-child {
+    border-bottom: none;
 }
 
 h3 {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 2.5rem;
     text-transform: uppercase;
-    border-bottom: 2px solid #444;
-    padding-bottom: 10px;
+    letter-spacing: 4px;
+    border-bottom: none;
+    padding-bottom: 0;
+    color: var(--text);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
 }
 
-/* Kontakt Overlay */
+h3::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+}
+
+main p {
+    color: var(--muted);
+    font-size: 1.1rem;
+}
+
+main ul {
+    color: var(--muted);
+    padding-left: 20px;
+}
+
+main li {
+    margin-bottom: 8px;
+}
+
+/* Genre Tags - Like patches/badges */
+.tagline {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 1.8rem;
+    font-weight: normal;
+    color: var(--text);
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+.genre-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 25px 0;
+}
+
+.genre-tags li {
+    background: transparent;
+    color: var(--text);
+    padding: 10px 20px;
+    border: 2px solid var(--accent);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.genre-tags li:hover {
+    background: var(--accent);
+    color: #fff;
+    transform: rotate(-2deg) scale(1.05);
+}
+
+.genre-tags li:nth-child(even):hover {
+    transform: rotate(2deg) scale(1.05);
+}
+
+/* Highlight Box */
+.highlight-box {
+    background: var(--bg-alt);
+    border-left: 4px solid var(--accent);
+    color: var(--text);
+    padding: 25px 30px;
+    margin-top: 35px;
+    font-size: 1.15rem;
+}
+
+.highlight-box strong {
+    display: block;
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 1.8rem;
+    font-weight: normal;
+    margin-top: 15px;
+    color: var(--accent);
+    letter-spacing: 2px;
+}
+
+/* Location Section */
+.location-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.location-info h4 {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    margin: 0 0 20px 0;
+    color: var(--text);
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+
+.location-info address {
+    font-style: normal;
+    color: var(--muted);
+    line-height: 2;
+    font-size: 1.1rem;
+}
+
+.map-link {
+    display: inline-block;
+    margin-top: 25px;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 28px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    border: none;
+}
+
+.map-link:hover {
+    background: var(--text);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.map-container {
+    overflow: hidden;
+    border: 2px solid #ddd;
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+    height: 300px;
+    border: 0;
+    filter: grayscale(100%) contrast(1.1);
+    transition: filter 0.3s;
+}
+
+.map-container:hover iframe {
+    filter: grayscale(0%) contrast(1);
+}
+
+@media (max-width: 700px) {
+    .location-section {
+        grid-template-columns: 1fr;
+    }
+    .hero-text h2 {
+        font-size: 3rem;
+    }
+}
+
+/* Overlay */
 .overlay {
     position: fixed;
     inset: 0;
@@ -147,31 +377,107 @@ h3 {
 }
 
 .overlay-content {
-    background: #1e1e1e;
-    padding: 30px;
+    background: var(--bg);
+    padding: 40px;
     max-width: 400px;
     width: 90%;
     text-align: center;
+    border: none;
+    border-top: 4px solid var(--accent);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 
 .overlay-content h2 {
+    font-family: 'Bebas Neue', Impact, sans-serif;
     margin-top: 0;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    font-weight: normal;
+}
+
+.overlay-content p {
+    color: var(--muted);
+    line-height: 2;
 }
 
 .overlay-close {
-    margin-top: 20px;
-    background: none;
-    border: 1px solid #555;
-    color: var(--text);
-    padding: 10px 20px;
+    margin-top: 25px;
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    padding: 12px 30px;
     cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+}
+
+.overlay-close:hover {
+    background: var(--accent);
+    color: #fff;
 }
 
 /* Footer */
 footer {
-    background: var(--bg-alt);
+    background: var(--text);
     text-align: center;
-    padding: 30px;
+    padding: 40px;
+    color: #999;
+    border-top: none;
+}
+
+.footer-links {
+    margin-top: 20px;
+}
+
+.footer-links button {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+}
+
+.footer-links button:hover {
+    color: #fff;
+}
+
+/* Legal Overlay */
+.overlay-content.legal {
+    max-width: 600px;
+    text-align: left;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.overlay-content.legal h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.overlay-content.legal h3 {
+    color: var(--text);
+    border: none;
+    font-size: 1rem;
+    margin: 25px 0 10px;
+    padding: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.overlay-content.legal h3::after {
+    display: none;
+}
+
+.overlay-content.legal p {
+    margin: 10px 0;
+    line-height: 1.7;
     color: var(--muted);
 }
 </style>
@@ -187,9 +493,14 @@ footer {
         <button
             aria-label="Kontakt öffnen"
             id="openKontakt"
-        >✉</button>
+        ><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+            <path d="M3 5h18v14H3z"/>
+            <path d="M3 5l9 7 9-7"/>
+        </svg></button>
 
-        <h1>Zephyr Records</h1>
+        <h1>
+            <img src="images/img_1.png" alt="Zephyr Record Shop" class="header-logo">
+        </h1>
 
         <div></div>
     </header>
@@ -203,29 +514,59 @@ footer {
     </div>
 </section>
 
+<div class="main-wrapper">
 <main id="inhalt">
 
 <section>
-    <h3>Über Uns</h3>
-    <p>
-        Zephyr Records ist ein unabhängiger Plattenladen aus Hamburg.
-        Wir führen ausschließlich Vinyl und sind spezialisiert auf schwere,
-        psychedelische Musik.
-    </p>
+    <h3>Zephyr-Recordshop</h3>
+    <p class="tagline">Der neue Spot für:</p>
+    <ul class="genre-tags">
+        <li>Stoner Rock</li>
+        <li>Heavy Psychedelic Rock</li>
+        <li>Spacerock</li>
+        <li>Doom</li>
+        <li>Punkrock</li>
+        <li>Hardcore</li>
+    </ul>
+    <div class="highlight-box">
+        Viele Raritäten und Neuheiten, sowie Gigposter und Patches
+        <strong>An- und Verkauf!</strong>
+    </div>
 </section>
 
 <section>
-    <h3>Plattenankauf</h3>
-    <p>
-        Wir kaufen Schallplatten aus den Bereichen Stoner Rock, Doom,
-        Psychedelic Rock und Sludge – Sammlungen oder Einzelstücke.
-    </p>
+    <h3>Hier findest du uns</h3>
+    <div class="location-section">
+        <div class="location-info">
+            <h4>Zephyr Recordshop</h4>
+            <address>
+                Bellalliancestraße 30<br>
+                20259 Hamburg-Eimsbüttel
+            </address>
+            <a href="https://www.google.com/maps/search/?api=1&query=Bellalliancestraße+30+Hamburg" target="_blank" rel="noopener" class="map-link">
+                Route planen
+            </a>
+        </div>
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2369.5!2d9.9657!3d53.5711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBellalliancestraße+30%2C+Hamburg!5e0!3m2!1sde!2sde!4v1"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
 </section>
 
 </main>
+</div>
 
 <footer>
-    © 2026 Zephyr Records · Hamburg
+    <div>© 2026 Zephyr Records · Hamburg</div>
+    <div class="footer-links">
+        <button id="openDatenschutz">Datenschutz</button>
+        <button id="openImpressum">Impressum</button>
+    </div>
 </footer>
 
 <!-- Kontakt Overlay -->
@@ -250,26 +591,108 @@ footer {
     </div>
 </div>
 
+<!-- Datenschutz Overlay -->
+<div
+    class="overlay"
+    id="datenschutzOverlay"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-labelledby="datenschutzTitel"
+>
+    <div class="overlay-content legal">
+        <h2 id="datenschutzTitel">Datenschutzerklärung</h2>
+
+        <h3>Allgemeines</h3>
+        <p>Der Schutz Ihrer persönlichen Daten ist uns wichtig. Diese Website erhebt und speichert keine personenbezogenen Daten.</p>
+
+        <h3>Keine Cookies</h3>
+        <p>Diese Website verwendet keine Cookies und keine Tracking-Technologien.</p>
+
+        <h3>Keine Analyse-Tools</h3>
+        <p>Wir setzen keine Analyse- oder Tracking-Tools ein. Es werden keine Nutzungsdaten erfasst oder an Dritte weitergegeben.</p>
+
+        <h3>Google Maps</h3>
+        <p>Diese Website bindet Google Maps ein. Beim Laden der Karte werden Daten an Google übertragen. Weitere Informationen finden Sie in der Datenschutzerklärung von Google.</p>
+
+        <h3>Kontaktaufnahme</h3>
+        <p>Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+
+        <button class="overlay-close" id="closeDatenschutz">
+            Schließen
+        </button>
+    </div>
+</div>
+
+<!-- Impressum Overlay -->
+<div
+    class="overlay"
+    id="impressumOverlay"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-labelledby="impressumTitel"
+>
+    <div class="overlay-content legal">
+        <h2 id="impressumTitel">Impressum</h2>
+
+        <h3>Angaben gemäß § 5 TMG</h3>
+        <p>
+            Zephyr Recordshop<br>
+            Bellalliancestraße 30<br>
+            20259 Hamburg
+        </p>
+
+        <h3>Kontakt</h3>
+        <p>E-Mail: kontakt@zephyr-records.de</p>
+
+        <h3>Haftung für Inhalte</h3>
+        <p>Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+
+        <h3>Haftung für Links</h3>
+        <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.</p>
+
+        <button class="overlay-close" id="closeImpressum">
+            Schließen
+        </button>
+    </div>
+</div>
+
 <script>
-const openBtn = document.getElementById("openKontakt");
-const closeBtn = document.getElementById("closeKontakt");
-const overlay = document.getElementById("kontaktOverlay");
+// Overlay management
+function setupOverlay(openId, closeId, overlayId) {
+    const openBtn = document.getElementById(openId);
+    const closeBtn = document.getElementById(closeId);
+    const overlay = document.getElementById(overlayId);
 
-openBtn.addEventListener("click", () => {
-    overlay.setAttribute("aria-hidden", "false");
-    closeBtn.focus();
-});
+    openBtn.addEventListener("click", () => {
+        overlay.setAttribute("aria-hidden", "false");
+        closeBtn.focus();
+    });
 
-closeBtn.addEventListener("click", closeOverlay);
+    closeBtn.addEventListener("click", () => {
+        overlay.setAttribute("aria-hidden", "true");
+        openBtn.focus();
+    });
+
+    return overlay;
+}
+
+const overlays = [
+    setupOverlay("openKontakt", "closeKontakt", "kontaktOverlay"),
+    setupOverlay("openDatenschutz", "closeDatenschutz", "datenschutzOverlay"),
+    setupOverlay("openImpressum", "closeImpressum", "impressumOverlay")
+];
 
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeOverlay();
+    if (e.key === "Escape") {
+        overlays.forEach(overlay => {
+            if (overlay.getAttribute("aria-hidden") === "false") {
+                overlay.setAttribute("aria-hidden", "true");
+            }
+        });
+    }
 });
-
-function closeOverlay() {
-    overlay.setAttribute("aria-hidden", "true");
-    openBtn.focus();
-}
 </script>
 
 </body>
