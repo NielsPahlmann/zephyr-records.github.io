@@ -5,11 +5,41 @@
 <title>Zephyr Records – Vinyl aus Hamburg</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
 <style>
+/* Self-hosted fonts (no external data transfer to Google) */
+@font-face {
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/bebas-neue-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/bebas-neue-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('fonts/inter-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('fonts/inter-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
     --bg: #ffffff;
     --bg-alt: #f5f5f5;
@@ -654,6 +684,43 @@ main li {
     filter: grayscale(0%) contrast(1);
 }
 
+/* Google Maps consent placeholder */
+.map-consent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    background: var(--bg-alt);
+    padding: 30px;
+    text-align: center;
+    gap: 15px;
+}
+
+.map-consent p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin: 0;
+    max-width: 320px;
+}
+
+.map-consent-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.map-consent-btn:hover {
+    background: var(--text);
+}
+
 @media (max-width: 700px) {
     .location-section {
         grid-template-columns: 1fr;
@@ -914,13 +981,11 @@ footer {
                 Route planen
             </a>
         </div>
-        <div class="map-container">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2369.5!2d9.9657!3d53.5711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBellalliancestraße+30%2C+Hamburg!5e0!3m2!1sde!2sde!4v1"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+        <div class="map-container" id="mapContainer">
+            <div class="map-consent" id="mapConsent">
+                <p>Durch das Laden der Karte werden Daten an Google übertragen. Weitere Infos in unserer <button style="background:none;border:none;color:var(--accent);cursor:pointer;padding:0;font-size:inherit;text-decoration:underline;" onclick="document.getElementById('openDatenschutz').click()">Datenschutzerklärung</button>.</p>
+                <button class="map-consent-btn" id="loadMapBtn">Karte laden</button>
+            </div>
         </div>
     </div>
 </section>
@@ -936,13 +1001,6 @@ footer {
             </div>
             <h4>Krach am Bach</h4>
             <p>Das kleine aber feine Stoner- und Doom-Festival im Herzen Deutschlands. Wir sind mit unserem Stand vor Ort und bringen Raritäten, Neuheiten und jede Menge Vinyl mit.</p>
-        </div>
-        <div class="festival-item">
-            <div class="festival-logo">
-                <img src="https://herzberg-festival.com/wp-content/uploads/2025/03/Logo_Herzberg_Festival_final_weiss.svg" alt="Herzberg Festival Logo">
-            </div>
-            <h4>Herzberg Festival</h4>
-            <p>Europas größtes Hippie- und Psychedelic-Festival. Seit Jahren dabei – mit einer handverlesenen Auswahl an Platten für Freigeister und Vinylsammler.</p>
         </div>
     </div>
 
@@ -997,7 +1055,7 @@ footer {
     <div class="staff-picks">
         <div class="album-card">
             <div class="album-cover">
-                <img src="https://doomed-nation.com/wp-content/uploads/2025/10/Suncraft2-1024x1024.jpg" alt="Suncraft - Welcome to the Coven">
+                <img src="images/staff-picks/suncraft-welcome-to-the-coven.jpg" alt="Suncraft - Welcome to the Coven">
             </div>
             <div class="album-info">
                 <h4>Suncraft</h4>
@@ -1009,7 +1067,7 @@ footer {
 
         <div class="album-card">
             <div class="album-cover">
-                <img src="https://f4.bcbits.com/img/a2611193283_10.jpg" alt="Kombynat Robotron - AANK">
+                <img src="images/staff-picks/kombynat-robotron-aank.jpg" alt="Kombynat Robotron - AANK">
             </div>
             <div class="album-info">
                 <h4>Kombynat Robotron</h4>
@@ -1021,7 +1079,7 @@ footer {
 
         <div class="album-card">
             <div class="album-cover">
-                <img src="https://f4.bcbits.com/img/a0370567407_10.jpg" alt="Kadavar - K.A.D.A.V.A.R.">
+                <img src="images/staff-picks/kadavar-kadavar.jpg" alt="Kadavar - K.A.D.A.V.A.R.">
             </div>
             <div class="album-info">
                 <h4>Kadavar</h4>
@@ -1078,20 +1136,38 @@ footer {
     <div class="overlay-content legal">
         <h2 id="datenschutzTitel">Datenschutzerklärung</h2>
 
-        <h3>Allgemeines</h3>
-        <p>Der Schutz Ihrer persönlichen Daten ist uns wichtig. Diese Website erhebt und speichert keine personenbezogenen Daten.</p>
+        <h3>1. Verantwortlicher</h3>
+        <p>
+            [VORNAME NACHNAME]<br>
+            Zephyr Recordshop<br>
+            Bellalliancestraße 30<br>
+            20259 Hamburg<br>
+            E-Mail: kontakt@zephyr-records.de
+        </p>
 
-        <h3>Keine Cookies</h3>
-        <p>Diese Website verwendet keine Cookies und keine Tracking-Technologien.</p>
+        <h3>2. Allgemeines</h3>
+        <p>Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Diese Website ist bewusst datensparsam gestaltet: Es werden keine Cookies gesetzt, keine Tracking- oder Analyse-Tools verwendet und keine Nutzungsprofile erstellt.</p>
 
-        <h3>Keine Analyse-Tools</h3>
-        <p>Wir setzen keine Analyse- oder Tracking-Tools ein. Es werden keine Nutzungsdaten erfasst oder an Dritte weitergegeben.</p>
+        <h3>3. Hosting (GitHub Pages)</h3>
+        <p>Diese Website wird über GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA – ein Unternehmen von Microsoft) gehostet. Beim Abrufen der Website werden technisch bedingt Server-Logfiles erzeugt, die Ihre IP-Adresse, Browsertyp und Abrufzeitpunkt enthalten können. Diese Verarbeitung erfolgt auf Basis von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren Betrieb der Website). Weitere Informationen finden Sie in den <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzhinweisen von GitHub</a>.</p>
 
-        <h3>Google Maps</h3>
-        <p>Diese Website bindet Google Maps ein. Beim Laden der Karte werden Daten an Google übertragen. Weitere Informationen finden Sie in der Datenschutzerklärung von Google.</p>
+        <h3>4. Google Maps</h3>
+        <p>Diese Website bindet Google Maps nur auf Ihre ausdrückliche Anforderung hin ein (2-Klick-Lösung). Erst wenn Sie auf „Karte laden" klicken, wird eine Verbindung zu den Servern von Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland hergestellt. Dabei können Daten (insbesondere Ihre IP-Adresse) in die USA übertragen werden. Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Weitere Informationen finden Sie in der <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Google</a>.</p>
 
-        <h3>Kontaktaufnahme</h3>
-        <p>Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+        <h3>5. Externe Medieninhalte</h3>
+        <p>Auf dieser Website werden Bilder von externen Servern eingebunden (Festival-Logo von krachambach.de sowie Albumcover, die lokal gespeichert sind). Beim Laden von Inhalten des Drittanbieters krachambach.de kann Ihre IP-Adresse an diesen Server übertragen werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Darstellung aktueller Inhalte).</p>
+
+        <h3>6. Kontaktaufnahme per E-Mail</h3>
+        <p>Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben (E-Mail-Adresse und Nachrichteninhalt) zur Bearbeitung Ihrer Anfrage verarbeitet und gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung/Vertragserfüllung) bzw. lit. f DSGVO (berechtigtes Interesse). Die Daten werden nicht ohne Ihre Einwilligung an Dritte weitergegeben und nach Abschluss des Vorgangs gelöscht, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+
+        <h3>7. Ihre Rechte (Art. 15–21 DSGVO)</h3>
+        <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten sowie das Recht auf Datenübertragbarkeit. Soweit die Verarbeitung auf einem berechtigten Interesse beruht, haben Sie das Recht, Widerspruch einzulegen. Sie haben zudem das Recht, sich bei der zuständigen Aufsichtsbehörde zu beschweren:</p>
+        <p>
+            Hamburgischer Beauftragter für Datenschutz und Informationsfreiheit (HmbBfDI)<br>
+            Ludwig-Erhard-Str. 22, 7. OG<br>
+            20459 Hamburg<br>
+            <a href="https://datenschutz.hamburg.de" target="_blank" rel="noopener">datenschutz.hamburg.de</a>
+        </p>
 
         <button class="overlay-close" id="closeDatenschutz">
             Schließen
@@ -1111,8 +1187,9 @@ footer {
     <div class="overlay-content legal">
         <h2 id="impressumTitel">Impressum</h2>
 
-        <h3>Angaben gemäß § 5 TMG</h3>
+        <h3>Angaben gemäß § 5 DDG</h3>
         <p>
+            [VORNAME NACHNAME]<br>
             Zephyr Recordshop<br>
             Bellalliancestraße 30<br>
             20259 Hamburg
@@ -1120,6 +1197,9 @@ footer {
 
         <h3>Kontakt</h3>
         <p>E-Mail: kontakt@zephyr-records.de</p>
+
+        <h3>Umsatzsteuer</h3>
+        <p>Kleinunternehmer gemäß § 19 UStG. Es wird keine Umsatzsteuer berechnet.</p>
 
         <h3>Haftung für Inhalte</h3>
         <p>Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
@@ -1237,6 +1317,19 @@ dots.forEach((dot, index) => {
 
 // Start automatic slideshow
 startSlideshow();
+
+// Google Maps 2-Klick-Lösung
+document.getElementById('loadMapBtn').addEventListener('click', function() {
+    var container = document.getElementById('mapContainer');
+    var consent = document.getElementById('mapConsent');
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2369.5!2d9.9657!3d53.5711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBellalliancestraße+30%2C+Hamburg!5e0!3m2!1sde!2sde!4v1';
+    iframe.allowFullscreen = true;
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    container.removeChild(consent);
+    container.appendChild(iframe);
+});
 
 </script>
 
