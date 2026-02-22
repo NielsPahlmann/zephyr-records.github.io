@@ -514,21 +514,11 @@ main li {
     text-transform: uppercase;
 }
 
-.band-category ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.band-category li {
+.band-category p {
     color: var(--muted);
-    padding: 4px 0;
     font-size: 0.95rem;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.band-category li:last-child {
-    border-bottom: none;
+    line-height: 1.6;
+    margin: 0;
 }
 
 .sortiment-more {
@@ -811,7 +801,10 @@ footer {
         </svg></button>
 
         <h1>
-            <img src="images/header-logo.png" alt="Zephyr Record Shop" class="header-logo">
+            <picture>
+                <source srcset="images/header-logo.webp" type="image/webp">
+                <img src="images/header-logo.png" alt="Zephyr Record Shop" class="header-logo" width="200" height="133" loading="eager">
+            </picture>
         </h1>
 
         <div class="header-social">
@@ -833,23 +826,39 @@ footer {
 
 <!-- Mood Gallery -->
 <section class="hero-gallery" aria-label="Stimmungsbild Zephyr Records">
-    <div class="hero-slide active" style="background-image: url('images/moods/img_2.jpg')">
+    <div class="hero-slide active"
+         data-bg-webp-lg="images/moods/img_2-1200.webp"
+         data-bg-webp-sm="images/moods/img_2-768.webp"
+         data-bg-jpg-lg="images/moods/img_2-1200.jpg"
+         data-bg-jpg-sm="images/moods/img_2-768.jpg">
         <div class="hero-text">
             <h2>Vinyl Only</h2>
             <p>Stoner · Doom · Sludge · Psychedelic</p>
         </div>
     </div>
-    <div class="hero-slide" style="background-image: url('images/moods/img_1.jpg')">
+    <div class="hero-slide"
+         data-bg-webp-lg="images/moods/img_1-1200.webp"
+         data-bg-webp-sm="images/moods/img_1-768.webp"
+         data-bg-jpg-lg="images/moods/img_1-1200.jpg"
+         data-bg-jpg-sm="images/moods/img_1-768.jpg">
         <div class="hero-text">
             <h2>Shop Cat</h2>
             <p>Der Boss im Laden</p>
         </div>
     </div>
-    <div class="hero-slide no-overlay" style="background-image: url('images/moods/img.jpg')">
+    <div class="hero-slide no-overlay"
+         data-bg-webp-lg="images/moods/img-1200.webp"
+         data-bg-webp-sm="images/moods/img-768.webp"
+         data-bg-jpg-lg="images/moods/img-1200.jpg"
+         data-bg-jpg-sm="images/moods/img-768.jpg">
         <div class="hero-text">
         </div>
     </div>
-    <div class="hero-slide no-overlay" style="background-image: url('images/moods/img_3.jpg')">
+    <div class="hero-slide no-overlay"
+         data-bg-webp-lg="images/moods/img_3-1200.webp"
+         data-bg-webp-sm="images/moods/img_3-768.webp"
+         data-bg-jpg-lg="images/moods/img_3-1200.jpg"
+         data-bg-jpg-sm="images/moods/img_3-768.jpg">
         <div class="hero-text">
         </div>
     </div>
@@ -942,68 +951,32 @@ footer {
 
 <section>
     <h3>Unser Sortiment</h3>
-    <p class="section-intro">Von Klassikern bis zu aktuellen Releases – ein Auszug aus unserem Repertoire:</p>
+    <p class="section-intro">Von Klassikern bis zu aktuellen Releases – wir haben das passende Vinyl f&uuml;r jeden Sound:</p>
 
     <div class="bands-grid">
         <div class="band-category">
             <h4>Stoner Rock</h4>
-            <ul>
-                <li>Kyuss</li>
-                <li>Fu Manchu</li>
-                <li>Monster Magnet</li>
-                <li>Clutch</li>
-                <li>Orange Goblin</li>
-            </ul>
+            <p>Schwere, groovige Riffs aus der W&uuml;ste. Fuzz-geladene Gitarren, hypnotische Rhythmen und eine Menge Feedback.</p>
         </div>
         <div class="band-category">
             <h4>Doom</h4>
-            <ul>
-                <li>Sleep</li>
-                <li>Electric Wizard</li>
-                <li>Candlemass</li>
-                <li>Saint Vitus</li>
-                <li>Windhand</li>
-            </ul>
+            <p>Langsam, schwer und monumental. Tiefgestimmte Riffs, die wie Blei durch den Raum kriechen.</p>
         </div>
         <div class="band-category">
             <h4>Psychedelic</h4>
-            <ul>
-                <li>Uncle Acid</li>
-                <li>All Them Witches</li>
-                <li>Earthless</li>
-                <li>Colour Haze</li>
-                <li>Kadavar</li>
-            </ul>
+            <p>Bewusstseinserweiternde Klangwelten. Halluzinogene Gitarren, fliesende Songstrukturen und endlose Jams.</p>
         </div>
         <div class="band-category">
             <h4>Spacerock</h4>
-            <ul>
-                <li>Hawkwind</li>
-                <li>Nebula</li>
-                <li>Spacemen 3</li>
-                <li>Ufomammut</li>
-                <li>35007</li>
-            </ul>
+            <p>Kosmische Reisen in Klang. Dronige Synthesizer, hypnotische Loops und Krautrock-Vibes aus dem All.</p>
         </div>
         <div class="band-category">
             <h4>Punk / Hardcore</h4>
-            <ul>
-                <li>Black Flag</li>
-                <li>Dead Kennedys</li>
-                <li>Bad Brains</li>
-                <li>Minor Threat</li>
-                <li>Cro-Mags</li>
-            </ul>
+            <p>Schnell, laut, kompromisslos. Rohe Energie, politische Wut und DIY-Ethos in Reinform.</p>
         </div>
         <div class="band-category">
             <h4>Sludge</h4>
-            <ul>
-                <li>Eyehategod</li>
-                <li>Acid Bath</li>
-                <li>Crowbar</li>
-                <li>Melvins</li>
-                <li>Weedeater</li>
-            </ul>
+            <p>Wo Doom auf Hardcore trifft. Brachiale Schwere, dreckiger Sound und ein Vibe wie ein Tritt in die Magengrube.</p>
         </div>
     </div>
 
@@ -1196,6 +1169,33 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
+// Responsive background images with WebP support
+(function() {
+    var supportsWebP = false;
+    var img = new Image();
+    img.onload = function() { supportsWebP = (img.width > 0 && img.height > 0); applyBgs(); };
+    img.onerror = function() { applyBgs(); };
+    img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
+
+    function applyBgs() {
+        var isMobile = window.innerWidth <= 768;
+        document.querySelectorAll('.hero-slide[data-bg-jpg-lg]').forEach(function(slide) {
+            var src;
+            if (supportsWebP) {
+                src = isMobile ? slide.dataset.bgWebpSm : slide.dataset.bgWebpLg;
+            } else {
+                src = isMobile ? slide.dataset.bgJpgSm : slide.dataset.bgJpgLg;
+            }
+            slide.style.backgroundImage = "url('" + src + "')";
+        });
+    }
+
+    window.addEventListener('resize', (function() {
+        var timer;
+        return function() { clearTimeout(timer); timer = setTimeout(applyBgs, 200); };
+    })());
+})();
+
 // Gallery Slideshow
 const slides = document.querySelectorAll('.hero-slide');
 const dots = document.querySelectorAll('.gallery-dot');
@@ -1237,6 +1237,7 @@ dots.forEach((dot, index) => {
 
 // Start automatic slideshow
 startSlideshow();
+
 </script>
 
 </body>
